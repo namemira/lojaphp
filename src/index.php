@@ -12,7 +12,9 @@ $produtos = Conexao::get()->query('SELECT * FROM produtos ORDER BY id DESC')->fe
     <td><?= $p['estoque'] ?></td>
     <td>
 <a href="editar.php?id=<?= $p['id'] ?>">Editar</a>
-<a href="excluir.php?id=<?= $p['id'] ?>" onclick="return confirm('Excluir?')"> Excluir</a>
+
+<a href="../excluir.php?id=<?= (int) $p['id'] ?>" onclick="return confirm('Excluir?')">Excluir</a>
+
 </td>
   </tr>
   <?php endforeach; ?>
