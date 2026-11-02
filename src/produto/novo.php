@@ -1,3 +1,4 @@
+
 <?php
 require_once __DIR__ . '/../autoload.php';
 
@@ -9,6 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $estoque = (int) ($_POST['estoque'] ?? 0);
 
     if ($nome !== '' && $preco >= 0 && $estoque >= 0) {
+
         $stmt = Conexao::get()->prepare(
             'INSERT INTO produtos (nome, preco, estoque)
              VALUES (:n, :p, :e)'
@@ -32,12 +34,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Novo produto</title>
-
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: Arial;
             background: #f2f2f2;
             padding: 30px;
         }
@@ -69,28 +69,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body>
 
-    <h1>Cadastrar produto</h1>
+<h1>Cadastrar produto</h1>
 
-    <?php if (isset($erro)): ?>
-        <p><?= htmlspecialchars($erro, ENT_QUOTES, 'UTF-8') ?></p>
-    <?php endif; ?>
+<?php if (isset($erro)): ?>
+    <p><?= htmlspecialchars($erro, ENT_QUOTES, 'UTF-8') ?></p>
+<?php endif; ?>
 
-    <form method="post">
-        <label for="nome">Nome:</label>
-        <input type="text" id="nome" name="nome" required>
+<form method="post">
 
-        <label for="preco">Preço (R$):</label>
-        <input type="number" id="preco" name="preco"
-               min="0" step="0.01" required>
+    <label for="nome">Nome:</label>
+    <input type="text" id="nome" name="nome" required>
 
-        <label for="estoque">Estoque:</label>
-        <input type="number" id="estoque" name="estoque"
-               min="0" step="1" required>
+    <label for="preco">Preço (R$):</label>
+    <input type="number" id="preco" name="preco"
+           min="0" step="0.01" required>
 
-        <button type="submit">Salvar produto</button>
-    </form>
+    <label for="estoque">Estoque:</label>
+    <input type="number" id="estoque" name="estoque"
+           min="0" step="1" required>
 
-    <p><a href="index.php">Voltar aos produtos</a></p>
+    <button type="submit">Salvar produto</button>
+
+</form>
+
+<p><a href="index.php">Voltar aos produtos</a></p>
 
 </body>
 </html>
