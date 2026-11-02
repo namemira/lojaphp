@@ -2,7 +2,7 @@
 
 spl_autoload_register(function (string $classe) {
     $mapa = [
-        'App\\Database\\Conexao' => __DIR__ . '/src/database/Conexao.php',
+        'App\\Database\\Conexao' => __DIR__ . '/database/Conexao.php',
     ];
 
     if (isset($mapa[$classe]) && file_exists($mapa[$classe])) {

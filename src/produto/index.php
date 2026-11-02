@@ -1,7 +1,7 @@
 <?php
 use App\Database\Conexao;
 
-require_once __DIR__ . '/../../autoload.php';
+require_once __DIR__ . '/../autoload.php';
 
 $produtos = Conexao::get()
     ->query('SELECT * FROM produtos ORDER BY id DESC')
@@ -100,7 +100,7 @@ $produtos = Conexao::get()
         </tbody>
     </table>
 
-    <p><a href="../index.php">Voltar ao início</a></p>
+    <p><a href="/../index.php">Voltar ao início</a></p>
 
 </body>
 </html>

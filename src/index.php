@@ -1,21 +1,58 @@
-<?php require __DIR__ . '/../autoload.php'; use App\Database\Conexao;
-$produtos = Conexao::get()->query('SELECT * FROM produtos ORDER BY id DESC')->fetchAll(); ?>
-<a href="novo.php">+ Novo produto</a>
-<table border="1">
-  <tr>
-<th>ID</th><th>Nome</th><th>Preço</th><th>Estoque</th><th></th>
-  </tr>
-  <?php foreach ($produtos as $p): ?>
-  <tr>
-    <td><?= $p['id'] ?></td><td><?= htmlspecialchars($p['nome']) ?></td>
-    <td>R$ <?= number_format($p['preco'], 2, ',', '.') ?></td>
-    <td><?= $p['estoque'] ?></td>
-    <td>
-<a href="editar.php?id=<?= $p['id'] ?>">Editar</a>
+<?php
+session_start();
+?>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loja PHP</title>
 
-<a href="../excluir.php?id=<?= (int) $p['id'] ?>" onclick="return confirm('Excluir?')">Excluir</a>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f2f2;
+            text-align: center;
+            padding: 30px;
+        }
 
-</td>
-  </tr>
-  <?php endforeach; ?>
-</table>
+        h1 {
+            color: #333;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            margin: 15px;
+        }
+
+        a {
+            display: inline-block;
+            background: #333;
+            color: white;
+            padding: 12px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        a:hover {
+            background: #555;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Loja PHP</h1>
+
+    <ul>
+        <li><a href="login.php">Entrar</a></li>
+        <li><a href="painel.php">Painel (restrito)</a></li>
+       <li><a href="carrinho.php">Carrinho</a></li>
+        <li><a href="produtos/">Produtos</a></li>
+    </ul>
+
+</body>
+</html>
